@@ -57,6 +57,7 @@ tests/data/crypto/out*
 # C/C++ generated
 *.a
 !3rdparty/kaldi_native_fbank/Linux/aarch64/libkaldi-native-fbank-core.a
+!3rdparty/libsndfile/Linux/aarch64/libsndfile.a
 *.ax
 *.d
 *.dll
