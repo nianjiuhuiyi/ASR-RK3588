@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {	
+            // 配置名称，将会在启动配置的下拉菜单中显示(可随意)
+            "name": "g++ - Build and debug active file",  
+            // 配置类型，对于C/C++可认为此处只能是cppdbg，由cpptools提供；不同编程语言不同
+            "type": "cppdbg",  
+            "request": "launch",  // 可以为launch（启动）或attach（附加）
+            // "program": "${workspaceFolder}/install/rknn_yolov5_demo", // 可执行文件的绝对路径
+            "program": "${workspaceFolder}/install/asr_rknn_serve", // 可执行文件的绝对路径
+            // 可执行文件后跟的参数(文件是相对路径)
+            // 如果最后给的rtsp地址，这里 & 符号前要加转义才行，
+            // 如："rtsp://192.168.108.132:554/user=admin\\&password=\\&channel=1\\&stream=0.sdp?"
+            // "args": ["-d", "my_v5l.engine", "../123.mp4"],  
+            "args": [
+                "./resources/model/encoder-epoch-99-avg-1.rknn",
+                "./resources/model/decoder-epoch-99-avg-1.rknn",
+                "./resources/model/joiner-epoch-99-avg-1.rknn",
+                "./resources/test.wav"
+            ],  
+             // 设为true时程序将暂停在程序入口处，相当于在main上打断点
+            "stopAtEntry": true, 
+            
+            "cwd": "${workspaceFolder}/install",  // 为了上面args后面的参数可以使用路径
+            "environment": [     // 加环境变量，必须是这种格式
+                // {"name": "DISPLAY", "value": "192.168.108.147:0.0"}, 
+                // {"name": "abc", "value": "a_test"}
+            ],
+            // true：就是使用单独的cmd窗口；false：使用内置终端（有显示不全的可能）（现在可能不是这个参数了，去看5.1debug）
+            "externalConsole": false, 
+            
+            "MIMode": "gdb",  // 指定连接的调试器，可以为gdb或lldb。但我没试过lldb
+            "miDebuggerPath": "/usr/bin/gdb",    // gdb的路径
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+    		// 这里的值跟tasks.json的label保持一致
+            "preLaunchTask": "C/C++: g++ build active file",
+        }
+    ]
+}

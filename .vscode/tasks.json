@@ -1,0 +1,25 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "options": {
+        "cwd": "${workspaceFolder}"   // 注意这里是 workspaceFolder
+    },
+    "tasks": [
+        {
+            "label": "build_shell",
+            "type": "shell",
+            "command": "./build.sh 1",  // 自己的shell脚本，里面就cmake、make等一系列命令
+
+            "args": [
+            
+            ]
+        },
+        {
+            "label": "C/C++: g++ build active file",  // 这里和laubch.json的`preLaunchTask`值保持一致
+            "dependsOn": [
+                "build_shell",
+            ]
+        }
+    ]
+}
