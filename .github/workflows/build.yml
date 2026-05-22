@@ -169,4 +169,4 @@ jobs:
             
             详细使用说明请参考项目 README.md
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}  # 注意github上设置的secrets的名称不能以 GITHUB*开头
